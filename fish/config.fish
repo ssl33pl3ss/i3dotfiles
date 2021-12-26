@@ -230,6 +230,8 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 # Custom aliases
 alias inst="sudo pacman -S"
 alias del="sudo pacman -R"
+alias gleblan="cd /run/media/tersone/Gleblan/"
+alias cls="clear"
 
 
 ## Run paleofetch if session is interactive
