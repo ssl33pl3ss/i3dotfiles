@@ -8,7 +8,7 @@
  */
 
 configuration {
-	font:							"Iosevka Nerd Font 10";
+	font:							"RobotoMono Nerd Font Medium 10";
     show-icons:                     true;
 	icon-theme: 					"Papirus";
     display-drun: 					"";
@@ -48,7 +48,7 @@ entry {
     placeholder-color:              @bar;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "Search...";
+    placeholder:                    "ssl33pl3ss...";
     padding:                        0px 0px 0px 10px;
     blink:                          true;
 }
@@ -97,6 +97,8 @@ element {
 element-icon {
     size:                           24px;
     border:                         0px;
+    background-color:  @al;
+    text-color: inherit;
 }
 
 element-text {
@@ -104,6 +106,8 @@ element-text {
     horizontal-align:               0;
     vertical-align:                 0.5;
     margin:                         0px 2.5px 0px 2.5px;
+    background-color:  @al;
+    text-color: inherit;
 }
 
 element selected {

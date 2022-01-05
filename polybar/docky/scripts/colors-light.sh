@@ -28,11 +28,20 @@ change_color() {
 	  ac:   ${AC}FF;
 	}
 	EOF
+	#background = #1F1F1F
+    #foreground = #FFFFFF
+    #foreground-alt = #8F8F8F
+    #module-fg = #1F1F1F
+    #primary = #039be5
+    #secondary = #E53935
+    #alternate = #7cb342
 	
 	polybar-msg cmd restart
 }
 
-if  [[ $1 = "--amber" ]]; then
+if  [[ $1 = "--dracula" ]]; then
+	change_color
+elif  [[ $1 = "--amber" ]]; then
 	MF="#2E2E2E"
 	AC="#ffb300"
 	change_color

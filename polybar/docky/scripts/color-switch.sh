@@ -13,6 +13,7 @@ MENU="$(rofi -no-config -no-lazy-grab -sep "|" -dmenu -i -p '' \
  green-light-dark| lime-dark| orange-dark| pink-dark| purple-dark| red-dark| teal-dark| yellow-dark|")"
             case "$MENU" in
 				## Light Colors
+				*dracula) "$SDIR"/colors-light.sh --dracula ;;
 				*amber) "$SDIR"/colors-light.sh --amber ;;
 				*blue) "$SDIR"/colors-light.sh --blue ;;
 				*blue-gray) "$SDIR"/colors-light.sh --blue-gray ;;
@@ -51,5 +52,5 @@ MENU="$(rofi -no-config -no-lazy-grab -sep "|" -dmenu -i -p '' \
 				*purple-dark) "$SDIR"/colors-dark.sh --purple ;;
 				*red-dark) "$SDIR"/colors-dark.sh --red ;;
 				*teal-dark) "$SDIR"/colors-dark.sh --teal ;;
-				*yellow-dark) "$SDIR"/colors-dark.sh --yellow				
+				*yellow-dark) "$SDIR"/colors-dark.sh --yellow
             esac
