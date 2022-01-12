@@ -1,0 +1,136 @@
+# i3wm config by tersone / ssl33pl3ss
+#          _ __________       _ _____
+#  ___ ___| |___ /___ / _ __ | |___ / ___ ___
+# / __/ __| | |_ \ |_ \| '_ \| | |_ \/ __/ __|
+# \__ \__ \ |___) |__) | |_) | |___) \__ \__ \
+# |___/___/_|____/____/| .__/|_|____/|___/___/
+#                      |_|
+
+# Mod key
+set $mod Mod4
+
+# System font
+font pango: NotoMono Nerd Font Book 11
+
+# Window borders
+for_window [class="^.*"] border pixel 0
+gaps inner 10
+gaps outer 10
+
+# Terminal / Text / Menu / Browser / Files
+bindsym $mod+Return exec --no-startup-id terminology
+bindsym Ctrl+Mod1+t exec --no-startup-id terminology
+bindsym $mod+k exec --no-startup-id leafpad
+bindsym $mod+r exec --no-startup-id "rofi -modi drun,run -show drun"
+bindsym $mod+Tab exec google-chrome-stable --ignore-gpu-blacklist --enable-experimental-canvas-features --enable-accelerated-2d-canvas --canvas-msaa-sample-count=2 --force-display-list-2d-canvas --force-gpu-rasterization --enable-fast-unload --enable-accelerated-vpx-decode=3 --enable-tcp-fastopen --javascript-harmony --enable-checker-imaging --v8-cache-options=code --v8-cache-strategies-for-cache-storage=aggressive --enable-zero-copy --ui-enable-zero-copy --enable-native-gpu-memory-buffers --enable-webgl-image-chromium --enable-accelerated-video --enable-gpu-rasterization
+bindsym $mod+e exec --no-startup-id pcmanfm
+
+# Shutdown menu
+bindsym Ctrl+Mod1+Delete exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# i3lock
+bindsym $mod+l exec i3lock
+
+# Kill window
+bindsym $mod+q kill
+
+# Focus windows
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused windows
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Resizing windows
+bindsym $mod+Ctrl+Left resize shrink width 25 px
+bindsym $mod+Ctrl+Right resize grow width 25 px
+bindsym $mod+Ctrl+Up resize shrink height 25 px
+bindsym $mod+Ctrl+Down resize grow height 25 px
+
+# Split in horizontal/vertical orientation
+bindsym $mod+z split h
+bindsym $mod+x split v
+
+# Fullscreen focused window
+bindsym $mod+Mod1+Up fullscreen toggle
+
+# Toggle tiling/floating and tiling/tabbed
+bindsym $mod+space floating toggle
+bindsym $mod+Shift+Tab layout toggle tabbed split
+
+# Reload config
+bindsym $mod+Shift+c reload
+
+# Restart i3 for updating config
+bindsym $mod+Shift+r restart
+
+# Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Define workspace names
+set $ws1 ""
+set $ws2 ""
+set $ws3 ""
+set $ws4 ""
+set $ws5 ""
+set $ws6 ""
+set $ws7 ""
+set $ws8 ""
+set $ws9 ""
+set $ws10 ""
+
+# Switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Move focused window to another workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Autostart
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
+exec_always --no-startup-id nitrogen --restore
+exec_always --no-startup-id xrandr --output LVDS1 --mode 1280x1080 --rate 60.00
+exec_always --no-startup-id setxkbmap us,ru -option 'grp:alt_shift_toggle'
+
+# Using i3 bar
+bar {
+	status_command ~/.config/bumblebee-status/bumblebee-status \
+		-m disk cpu memory nic date time \
+		-p root.path=/ disk.format="{used}" memory.format="{percent:05.02f}%" nic.format={ssid} nic.states=^down\
+		-t onedark-powerline
+	position top
+	font pango: NotoMono Nerd Font Book 10
+	colors {
+		background #2f343f
+		focused_workspace  #404552 #404552 #ffffff
+		active_workspace   #333333 #5f676a #ffffff
+		inactive_workspace #2f343f #2f343f #888888
+		urgent_workspace   #2f343f #2f343f #ffffff
+	}
+}
