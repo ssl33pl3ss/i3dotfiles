@@ -30,7 +30,8 @@ title_align center
 #   Terminal / Text / Menu / Browser / Files
 # ---------------------------------------------
 bindsym $mod+Return exec terminal
-bindsym $mod+k exec micro
+bindsym Ctrl+Mod1+t exec terminal
+bindsym $mod+k exec geany
 bindsym $mod+r exec j4-dmenu
 bindsym $mod+Tab exec firefox
 bindsym $mod+e exec thunar
