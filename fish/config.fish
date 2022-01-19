@@ -4,9 +4,9 @@ set fish_greeting
 set VIRTUAL_ENV_DISABLE_PROMPT "1"
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
-set TERM "alacritty"
-set EDITOR "micro"
-set BROWSER "firefox"
+set TERM "konsole"
+set -gx EDITOR "micro"
+set BROWSER "google-chrome-stable"
 
 ## Export variable need for qt-theme
 if type "qtile" >> /dev/null 2>&1
@@ -232,19 +232,11 @@ alias inst="sudo pacman -S"
 alias del="sudo pacman -R"
 alias gleblan="cd /run/media/tersone/Gleblan/"
 alias cls="clear"
+alias quit="exit"
+alias tt="tt -words ru -n 15 -bold -notheme -w 1000"
+alias runcpp="g++ main.cpp -o main && ./main"
+alias anicli="ani-cli -q best -v"
 
-# Axyl aliases
-alias btrfortune='fortune -a -s | head -n 1 | figlet | lolcat'
-alias fortunecow='fortune -a -s | head -n 1 | cowsay | lolcat'
-
-alias l='exa -lahF --color=always --icons --sort=size --group-directories-first'
-alias lst='exa -lahFT --color=always --icons --sort=size --group-directories-first'
-
-alias matrix='unimatrix -f -l ocCgGkS -s 96'
-alias clock='tty-clock -sct -C 4'
-alias pipes='pipes -p 5 -R -t 1 -r 0' 
-
-# Run if session is interactive
+## Run paleofetch if session is interactive
 if status --is-interactive
-    colorscript -r
 end

@@ -16,7 +16,7 @@ set $mod Mod4
 # ---------------------------------------------
 #                 System font
 # ---------------------------------------------
-font pango:Source Code Pro Medium 10
+font pango:System San Francisco Display 9
 
 # ---------------------------------------------
 #               Window borders
@@ -24,26 +24,25 @@ font pango:Source Code Pro Medium 10
 for_window [class="^.*"] border pixel 0
 gaps inner 10
 gaps outer 10
-title_align center
 
 # ---------------------------------------------
 #   Terminal / Text / Menu / Browser / Files
 # ---------------------------------------------
-bindsym $mod+Return exec terminal
-bindsym $mod+k exec micro
-bindsym $mod+r exec j4-dmenu
+bindsym $mod+Return exec konsole
+bindsym $mod+k exec kate
+bindsym $mod+r exec ~/.config/polybar/docky/scripts/launcher.sh
 bindsym $mod+Tab exec firefox
-bindsym $mod+e exec thunar
+bindsym $mod+e exec dolphin
 
 # ---------------------------------------------
-#                Menus
+#                Shutdown menu
 # ---------------------------------------------
-bindsym Ctrl+Mod1+Delete exec powermenu
-bindsym Ctrl+Mod1+n exec def-nmdmenu
-bindsym Ctrl+Mod1+r exec def-dmenu
-bindsym $mod+l exec lock
-bindsym Mod1+e exec edit-configs
-bindsym Mod1+l exec quick-links
+bindsym Ctrl+Mod1+Delete exec ~/.config/polybar/docky/scripts/powermenu.sh
+
+# ---------------------------------------------
+#                 Config menu
+# ---------------------------------------------
+bindsym Ctrl+Mod1+o exec ~/.config/polybar/docky/scripts/configmenu.sh
 
 # ---------------------------------------------
 #                Kill window
@@ -67,6 +66,14 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # ---------------------------------------------
+#             Resizing windows
+# ---------------------------------------------
+bindsym $mod+Ctrl+Left resize shrink width 25 px
+bindsym $mod+Ctrl+Right resize grow width 25 px
+bindsym $mod+Ctrl+Up resize shrink height 25 px
+bindsym $mod+Ctrl+Down resize grow height 25 px
+
+# ---------------------------------------------
 #   Split in horizontal/vertical orientation
 # ---------------------------------------------
 bindsym $mod+z split h
@@ -84,7 +91,7 @@ bindsym $mod+space floating toggle
 bindsym $mod+Shift+Tab layout toggle tabbed split
 
 # ---------------------------------------------
-#               Restart/Reload config
+#       Reload/Restart i3 for updating config
 # ---------------------------------------------
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
@@ -97,24 +104,6 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #d
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # ---------------------------------------------
-#                Screenshots
-# ---------------------------------------------
-bindsym Print exec takeshot --now
-bindsym Ctrl + Print exec takeshot --area
-
-# ---------------------------------------------
-#                Colorscheme
-# ---------------------------------------------
-client.background       #2b3339
-
-# class                 border  backgr. text    indicator child_border
-client.focused          #81A1C1 #81A1C1 #D8DEE9 #a7c080   #81A1C1
-client.focused_inactive #61AFEF #61AFEF #2E3440 #a7c080   #61AFEF
-client.unfocused        #3B4252 #3B4252 #D8DEE9 #a7c080   #3B4252
-client.urgent           #BF616A #BF616A #D8DEE9 #a7c080   #BF616A
-client.placeholder      #2E3440 #2E3440 #D8DEE9 #a7c080   #2E3440
-
-# ---------------------------------------------
 #           Define workspace names
 # ---------------------------------------------
 set $ws1 "1"
@@ -124,6 +113,9 @@ set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # ---------------------------------------------
 #             Switch to workspace
@@ -135,6 +127,9 @@ bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # ---------------------------------------------
 #   Move focused window to another workspace
@@ -146,34 +141,45 @@ bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
 # ---------------------------------------------
-#             Resizing windows
+#   		Assign app to workspace
 # ---------------------------------------------
-bindsym $mod+Ctrl+Left resize shrink width 25 px
-bindsym $mod+Ctrl+Right resize grow width 25 px
-bindsym $mod+Ctrl+Up resize shrink height 25 px
-bindsym $mod+Ctrl+Down resize grow height 25 px
+
+assign [class="Code"] $ws2
+assign [class="Blender"] $ws2
+assign [class="discord"] $ws3
+assign [class="Figma"] $ws3
 
 # ---------------------------------------------
-#               Apps assignment
+#              Plasma integraion
 # ---------------------------------------------
-assign [class="Code"] 2
-
-# ---------------------------------------------
-#                  Apps rules
-# ---------------------------------------------
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [class="zoom"] floating enable
-for_window [class="Alafloat|Matplotlib"] floating enable
-for_window [class="Onboard|Yad"] floating enable
-for_window [class="feh|Viewnior|MPlayer"] floating enable
+for_window [title="Рабочий стол по умолчанию — Plasma"] kill, floating enable, border none
+for_window [class="plasmashell"] kill, floating enable
+for_window [class="Plasma"] floating enable, border none
+for_window [title="plasma-desktop"] floating enable, border none
+for_window [title="win7"] floating enable, border none
+for_window [class="krunner"] floating enable, border none
+for_window [class="Kmix"] floating enable, border none
+for_window [class="Klipper"] floating enable, border none
+for_window [class="Plasmoidviewer"] floating enable, border none
+for_window [class="(?i)*nextcloud*"] floating disable
+for_window [class="plasmashell" window_type="notification"] floating enable, border none, move right 700px, move down 450px
+no_focus [class="plasmashell" window_type="notification"]
 
 # ---------------------------------------------
 #                 Autostart
 # ---------------------------------------------
-exec_always --no-startup-id "~/.config/i3/bin/autostart.sh"
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
 exec_always --no-startup-id nvidia-settings --load-config-only
+exec_always --no-startup-id ~/.fehbg;
+#exec_always --no-startup-id nitrogen --restore
+exec_always --no-startup-id ~/.config/polybar/launch.sh --docky
 exec_always --no-startup-id xrandr --output DP-1 --mode 1920x1080 --rate 144.00
 exec_always --no-startup-id setxkbmap us,ru -option 'grp:alt_shift_toggle'
+exec_always --no-startup-id picom --experimental-backends
