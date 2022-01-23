@@ -29,20 +29,20 @@ gaps outer 10
 #   Terminal / Text / Menu / Browser / Files
 # ---------------------------------------------
 bindsym $mod+Return exec konsole
+bindsym Ctrl+Mod1+t exec konsole
 bindsym $mod+k exec kate
 bindsym $mod+r exec ~/.config/polybar/docky/scripts/launcher.sh
 bindsym $mod+Tab exec firefox
 bindsym $mod+e exec dolphin
 
 # ---------------------------------------------
-#                Shutdown menu
+#            Custom menus and files
 # ---------------------------------------------
+bindsym $mod+l exec --no-startup-id scrlock.sh
 bindsym Ctrl+Mod1+Delete exec ~/.config/polybar/docky/scripts/powermenu.sh
-
-# ---------------------------------------------
-#                 Config menu
-# ---------------------------------------------
 bindsym Ctrl+Mod1+o exec ~/.config/polybar/docky/scripts/configmenu.sh
+bindsym Ctrl+Mod1+h exec konsole -e micro ~/hw
+bindsym Ctrl+Mod1+g exec nomacs ~/Pictures/random/raspisanie.jpg
 
 # ---------------------------------------------
 #                Kill window

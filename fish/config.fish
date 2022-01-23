@@ -78,9 +78,9 @@ function fish_prompt
   end
 
   # Notify if a command took more than 5 minutes
-  if [ "$CMD_DURATION" -gt 300000 ]
-    echo The last command took (math "$CMD_DURATION/1000") seconds.
-  end
+  #if [ "$CMD_DURATION" -gt 300000 ]
+  #  echo The last command took (math "$CMD_DURATION/1000") seconds.
+  #end
 
   echo -n -s $initial_indicator $whitespace $cwd $git_info $whitespace $ahead $status_indicator $whitespace
 end
@@ -238,12 +238,15 @@ alias tt="tt -words ru -n 15 -bold -notheme -w 1000"
 alias runcpp="g++ main.cpp -o main && ./main"
 alias anicli="ani-cli -q best -v"
 alias nf="neofetch"
+alias nfb="neofetch --config ~/.config/neofetch/config_big.conf"
 
 # Custom abbreviations
 abbr g 'git'
 abbr ga 'git add'
 abbr gc 'git commit -m'
+abbr gcl 'git clone'
 abbr gp 'git push'
+abbr gs 'git status'
 
 ## Run paleofetch if session is interactive
 if status --is-interactive
