@@ -53,6 +53,7 @@ function fish_prompt
 
   if test $last_status = 0
     set initial_indicator "$green◆"
+    #set status_indicator "$normal❯$cyan❯$green❯"
     set status_indicator "$normal❯$cyan❯$green❯"
   else
     set initial_indicator "$red✖ $last_status"
@@ -118,7 +119,7 @@ end
 #end
 
 ## Advanced command-not-found hook
-source /usr/share/doc/find-the-command/ftc.fish
+#source /usr/share/doc/find-the-command/ftc.fish
 
 ## Functions
 # Functions needed for !! and !$ https://github.com/oh-my-fish/plugin-bang-bang
@@ -229,13 +230,20 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
 # Custom aliases
 alias inst="sudo pacman -S"
-alias del="sudo pacman -R"
+alias del="sudo pacman -Rs"
 alias gleblan="cd /run/media/tersone/Gleblan/"
 alias cls="clear"
 alias quit="exit"
 alias tt="tt -words ru -n 15 -bold -notheme -w 1000"
 alias runcpp="g++ main.cpp -o main && ./main"
 alias anicli="ani-cli -q best -v"
+alias nf="neofetch"
+
+# Custom abbreviations
+abbr g 'git'
+abbr ga 'git add'
+abbr gc 'git commit -m'
+abbr gp 'git push'
 
 ## Run paleofetch if session is interactive
 if status --is-interactive
