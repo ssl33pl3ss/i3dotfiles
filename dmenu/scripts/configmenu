@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+dmenu_command="dmenu -h 25 -p Config:"
+
+# Options
+ithree="i3"
+picom="picom"
+fish="fish"
+micro="micro"
+neofetch="neofetch"
+grub="grub"
+#confmenu="confmenu"
+
+# Variable passed to rofi
+#options="$ithree\n$picom\n$fish\n$micro\n$neofetch\n$grub\n$confmenu"
+options="$ithree\n$picom\n$fish\n$micro\n$neofetch\n$grub"
+
+chosen="$(echo -e "$options" | $dmenu_command)"
+case $chosen in
+    $ithree)
+		konsole -e micro ~/.config/i3/config
+        ;;
+    $picom)
+    	konsole -e micro ~/.config/picom/picom.conf
+        ;;
+    $fish)
+		konsole -e micro ~/.config/fish/config.fish
+        ;;
+    $micro)
+		konsole -e micro ~/.config/micro/settings.json
+        ;;
+    $neofetch)
+		konsole -e micro ~/.config/neofetch/config.conf
+        ;;
+    $grub)
+		konsole -e sudo -e /boot/grub/grub.cfg
+        ;;
+    #$confmenu)
+   	#	konsole -e micro ~/.config/polybar/docky/scripts/configmenu.sh
+   	#	;;
+esac

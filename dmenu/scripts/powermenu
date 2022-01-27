@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+dmenu_command="dmenu -h 25 -p Power:"
+
+# Options
+shutdown="Shutdown"
+reboot="Restart"
+lock="Lock"
+
+# Variable passed to dmenu
+options="$lock\n$reboot\n$shutdown"
+
+chosen="$(echo -e "$options" | $dmenu_command)"
+case $chosen in
+    $shutdown)
+    	systemctl poweroff
+        ;;
+    $reboot)
+		systemctl reboot
+		;;
+    $lock)
+		exec scrlock.sh
+        ;;
+esac
